@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
+    <title>Responsive Countdown Timer</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            justify-content: center; /* Zentriert den Timer horizontal */
+            height: 100vh; /* Macht den Body so hoch wie den Viewport */
+            align-items: center; /* Zentriert den Timer vertikal */
+            margin: 0;
+        }
+
+        #timer {
+            display: flex;
+            justify-content: space-around;
+            width: 60%; /* Breite des Timers relativ zum Viewport */
+            font-size: 0.5vw; /* Die Font-Größe skaliert mit der Breite des Viewports */
+        }
+
+        .time-unit {
+            background: #5b8c70;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 1vw; /* Padding skaliert mit der Breite des Viewports */
+            width: 20%; /* Jede Zeiteinheit nimmt 20% der Timerbreite ein */
+            text-align: center;
+        }
+
+        .numbers {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3vw; /* Große Zahlen, die mit der Breite des Viewports skalieren */
+            margin-bottom: 0.3vw; /* Abstand zwischen den Zahlen und dem Text */
+        }
+
+        .label {
+            text-transform: uppercase;
+            letter-spacing: 0.2vw; /* Buchstabenabstand skaliert mit der Breite des Viewports */
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">
+        <div class="time-unit">
+            <div id="days" class="numbers">164</div>
+            <div class="label">days</div>
+        </div>
+        <div class="time-unit">
+            <div id="hours" class="numbers">9</div>
+            <div class="label">hours</div>
+        </div>
+        <div class="time-unit">
+            <div id="minutes" class="numbers">6</div>
+            <div class="label">minutes</div>
+        </div>
+        <div class="time-unit">
+            <div id="seconds" class="numbers">59</div>
+            <div class="label">seconds</div>
+        </div>
+    </div>
+    <script>
+        const myDate = new Date('Nov 17, 2024 00:00:00');
+        let timer = setInterval(function() {
+            const today = new Date().getTime();
+            const diff = myDate - today;
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+        }, 1000);
+    </script>
+</body>
+</html>
